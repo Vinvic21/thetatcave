@@ -1,0 +1,176 @@
+/* ---------- Header ---------- */
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--ink); color: var(--paper); --focus: var(--blue); }
+.site-header__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4rem; }
+.brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-size: 1.4rem; text-decoration: none; }
+.brand__star { color: var(--red); display: inline-flex; filter: brightness(1.35); }
+
+.menu-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 3rem; height: 3rem;
+  background: transparent; color: inherit; border: 2px solid var(--paper); border-radius: var(--radius); cursor: pointer;
+}
+
+.site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--ink); padding: 1rem; border-top: 1px solid #3a3836; }
+.site-nav.is-open { display: block; }
+.site-nav ul { display: grid; gap: 0.25rem; }
+.site-nav a:not(.btn) { display: block; padding: 0.8rem 0.5rem; font-weight: 700; text-decoration: none; }
+.site-nav a:not(.btn):hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 3px; text-decoration-color: var(--blue); }
+.site-nav__cta { padding-top: 0.5rem; }
+.site-nav__cta .btn { width: 100%; }
+
+@media (min-width: 52rem) {
+  .menu-toggle { display: none; }
+  .site-nav { display: block; position: static; padding: 0; border: 0; background: transparent; }
+  .site-nav ul { display: flex; align-items: center; gap: 0.5rem; }
+  .site-nav a:not(.btn) { padding: 0.5rem 0.75rem; }
+  .site-nav__cta { padding: 0 0 0 0.75rem; }
+  .site-nav__cta .btn { width: auto; }
+}
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(2.5rem, 7vw, 5rem) clamp(3.5rem, 8vw, 6rem); }
+.hero__grid { display: grid; gap: 3rem; align-items: center; }
+.hero__lead { max-width: 48ch; margin-top: 1.25rem; font-size: 1.2rem; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.75rem; }
+.hero__facts { display: grid; gap: 0.6rem; margin-top: 2rem; }
+.hero__facts li { display: flex; align-items: flex-start; gap: 0.6rem; }
+.hero__facts svg { flex: none; margin-top: 0.25rem; }
+.hero__facts a { font-weight: 700; text-underline-offset: 3px; }
+
+.hero__photo { position: relative; margin: 0 0 1.5rem; border: 4px solid var(--ink); background: var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.hero__photo img { width: 100%; aspect-ratio: 1087 / 618; object-fit: cover; }
+.hero__badge { position: absolute; left: 0.75rem; bottom: -1.4rem; max-width: calc(100% - 1.5rem); padding: 0.5rem 0.9rem; background: var(--paper); color: var(--ink); border: var(--line); box-shadow: 3px 3px 0 var(--ink); }
+
+.status { display: flex; align-items: center; gap: 0.6rem; margin: 0; font-weight: 700; line-height: 1.3; }
+.status__dot { flex: none; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: #6b6762; border: 2px solid var(--ink); }
+.status__dot.is-open { background: #1c9c4b; }
+
+@media (min-width: 56rem) {
+  .hero__grid { grid-template-columns: 1.05fr 1fr; gap: 4rem; }
+}
+
+/* The one entrance moment on the page: the storefront photo lands like a stamp. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__photo { animation: stamp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes stamp {
+    from { opacity: 0; transform: translate(14px, 14px) rotate(1.5deg); box-shadow: 0 0 0 var(--ink); }
+    to { opacity: 1; transform: none; box-shadow: 10px 10px 0 var(--ink); }
+  }
+}
+
+/* ---------- Services ---------- */
+.menu { margin-top: 2.5rem; border-bottom: var(--line); }
+.menu__row { display: grid; gap: 0.5rem 2rem; padding-block: 1.75rem; border-top: var(--line); align-items: start; }
+.menu__row h3 { display: flex; align-items: center; gap: 0.6rem; }
+.menu__row p { margin: 0; max-width: 46ch; }
+.menu__star { color: var(--red); display: inline-flex; flex: none; }
+.menu__link { justify-self: start; font-weight: 700; text-underline-offset: 4px; text-decoration-thickness: 2px; padding-block: 0.4rem; }
+.menu__link:hover { background: var(--blue); }
+@media (min-width: 52rem) {
+  .menu__row { grid-template-columns: minmax(15rem, 1fr) 1.6fr auto; align-items: center; }
+}
+
+/* ---------- Work gallery ---------- */
+.work { columns: 2; column-gap: 1rem; margin-top: 2.5rem; }
+.work__cell { break-inside: avoid; margin-bottom: 1rem; }
+.work__item { display: block; width: 100%; padding: 0; background: transparent; border: 3px solid #3a3836; border-radius: var(--radius); cursor: zoom-in; overflow: hidden; }
+.work__item:hover { border-color: var(--blue); }
+.work__item img { width: 100%; height: auto; }
+@media (min-width: 48rem) { .work { columns: 3; column-gap: 1.25rem; } .work__cell { margin-bottom: 1.25rem; } }
+@media (min-width: 72rem) { .work { columns: 4; } }
+
+.lightbox { padding: 0; border: 4px solid var(--paper); background: var(--ink); color: var(--paper); max-width: min(94vw, 62rem); max-height: 94vh; overflow: auto; --focus: var(--blue); }
+.lightbox::backdrop { background: rgba(0, 0, 0, 0.82); }
+.lightbox__body img { width: auto; max-width: 100%; max-height: 74vh; margin-inline: auto; object-fit: contain; }
+.lightbox__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 1rem; }
+.lightbox__bar p { margin: 0; font-weight: 700; }
+.lightbox__buttons { display: flex; gap: 0.5rem; }
+.lightbox__buttons button { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; background: var(--paper); color: var(--ink); border: var(--line); border-radius: var(--radius); cursor: pointer; }
+.lightbox__buttons button:hover { background: var(--blue); }
+
+/* ---------- Inside the shop ---------- */
+.shop { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.shop__tile { margin: 0; border: var(--line); box-shadow: var(--stamp); background: var(--ink); overflow: hidden; }
+.shop__tile img { width: 100%; height: 100%; object-fit: cover; }
+.shop__tile--wide { grid-column: 1 / -1; aspect-ratio: 3 / 2; }
+.shop__tile--side { aspect-ratio: 4 / 5; }
+.shop__tile--third { aspect-ratio: 4 / 5; }
+.shop__tile--car { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.shop__tile--car img { object-position: 55% 60%; }
+@media (min-width: 52rem) {
+  .shop { grid-template-columns: repeat(6, 1fr); gap: 1.5rem; }
+  .shop__tile--wide { grid-column: span 4; aspect-ratio: auto; min-height: 22rem; }
+  .shop__tile--side { grid-column: span 2; aspect-ratio: auto; }
+  .shop__tile--third { grid-column: span 2; aspect-ratio: 1 / 1; }
+  .shop__tile--car { grid-column: span 2; aspect-ratio: 1 / 1; }
+}
+
+/* ---------- Visit ---------- */
+.visit { display: grid; gap: 3rem; }
+.visit__address { margin-top: 1.5rem; font-size: 1.3rem; line-height: 1.5; }
+.visit__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.hours table { width: 100%; border-collapse: collapse; background: var(--paper); border: var(--line); }
+.hours caption { padding-bottom: 0.75rem; text-align: left; font-family: var(--font-display); font-size: 1.5rem; }
+.hours th, .hours td { padding: 0.75rem 1rem; text-align: left; border-top: 2px solid var(--ink); }
+.hours tr:first-child th, .hours tr:first-child td { border-top: 0; }
+.hours th { font-weight: 700; }
+.hours tr.is-today { background: var(--ink); color: var(--paper); }
+.hours tr.is-today svg { display: inline-block; vertical-align: -2px; margin-right: 0.4rem; color: var(--blue); }
+.hours__today { font-weight: 500; }
+.hours__note { margin: 1rem 0 0; font-size: 0.95rem; }
+@media (min-width: 52rem) { .visit { grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; } }
+
+/* ---------- Booking ---------- */
+.booking { display: grid; gap: 3rem; align-items: start; }
+.booking__intro p { max-width: 46ch; margin-top: 1rem; font-size: 1.15rem; }
+.booking__number { margin-top: 0.5rem; }
+.booking__presets { display: grid; gap: 1rem; margin-top: 1.75rem; justify-items: start; }
+
+.builder { background: var(--paper); color: var(--ink); border: var(--line); box-shadow: 8px 8px 0 var(--ink); padding: clamp(1.25rem, 4vw, 2rem); }
+.builder h3 { margin-bottom: 1.25rem; }
+.builder { --focus: #0b5cad; }
+.builder__choices { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1.25rem; padding: 0; border: 0; }
+.builder__choices legend { margin-bottom: 0.5rem; padding: 0; font-weight: 700; }
+.chip { position: relative; display: inline-flex; }
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip span { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.4rem 1.1rem; border: var(--line); border-radius: 999px; font-weight: 700; background: var(--white); }
+.chip input:checked + span { background: var(--ink); color: var(--paper); }
+.chip input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+.field { margin-bottom: 1.1rem; }
+.field label { display: block; margin-bottom: 0.35rem; font-weight: 700; }
+.field input, .field textarea { width: 100%; padding: 0.7rem 0.8rem; font: inherit; color: var(--ink); background: var(--white); border: var(--line); border-radius: var(--radius); }
+.field textarea { resize: vertical; min-height: 6rem; }
+
+.builder__label { margin-bottom: 0.35rem; font-weight: 700; }
+.preview { margin-bottom: 1.25rem; padding: 0.9rem 1rem; white-space: pre-line; background: var(--white); border: 2px dashed var(--ink); border-radius: var(--radius); overflow-wrap: anywhere; }
+.builder__note { margin: 1rem 0 0; font-size: 0.95rem; }
+@media (min-width: 56rem) { .booking { grid-template-columns: 1fr 1.1fr; gap: 4rem; } }
+
+/* ---------- Footer ---------- */
+.site-footer { padding-bottom: 6.5rem; }
+.site-footer__grid { display: grid; gap: 2rem; padding-block: 2.5rem; }
+.site-footer__name { margin-bottom: 0.25rem; font-family: var(--font-display); font-size: 1.6rem; }
+.site-footer ul { display: grid; gap: 0.4rem; }
+.site-footer a { text-underline-offset: 3px; }
+.site-footer__legal { padding-block: 1rem 0; border-top: 1px solid #3a3836; font-size: 0.95rem; }
+.site-footer__legal p { margin: 0; }
+@media (min-width: 48rem) { .site-footer__grid { grid-template-columns: 1.5fr 1fr; } }
+
+/* ---------- Sticky WhatsApp button ---------- */
+.fab {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  min-width: 3.75rem; height: 3.75rem; padding: 0 1rem;
+  background: var(--wa); color: var(--ink);
+  border: var(--line); border-radius: 999px; box-shadow: var(--stamp);
+  font-weight: 700; text-decoration: none;
+  --focus: #0b5cad;
+}
+.fab:hover { box-shadow: 7px 7px 0 var(--ink); }
+.fab:focus-visible { outline: 3px solid #fff; box-shadow: 0 0 0 6px var(--ink); }
+.fab__label { display: none; }
+@media (min-width: 40rem) { .fab__label { display: inline; padding-right: 0.25rem; } }
